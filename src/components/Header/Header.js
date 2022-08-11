@@ -12,7 +12,9 @@ const Header = () => {
     <header>
       <SuperHeader />
       <MainHeader>
-        <Logo />
+        <FlexGrow>
+          <Logo />
+        </FlexGrow>
         <Nav>
           <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/new">New&nbsp;Releases</NavLink>
@@ -21,22 +23,24 @@ const Header = () => {
           <NavLink href="/kids">Kids</NavLink>
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
+        <FlexGrow></FlexGrow>
       </MainHeader>
     </header>
   );
 };
 
 const MainHeader = styled.div`
-  padding: 20px 32px;
+  padding: 18px 32px;
   border-bottom: 1px solid ${COLORS.gray[300]};
   display: flex;
   align-items: baseline;
+  height: 72px;
 `;
 
 const Nav = styled.nav`
   display: flex;
   gap: 48px;
-  margin-left: 200px;
+  margin: 0px 48px;
 `;
 
 const NavLink = styled.a`
@@ -49,6 +53,10 @@ const NavLink = styled.a`
   &:first-of-type {
     color: ${COLORS.secondary};
   }
+`;
+
+const FlexGrow = styled.div`
+  flex: 1;
 `;
 
 export default Header;

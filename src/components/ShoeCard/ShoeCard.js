@@ -36,7 +36,8 @@ const ShoeCard = ({
       <Wrapper>
         <ImageWrapper>
           <Image alt="" src={imageSrc} />
-          {variant !== 'default' && <Tag variant={variant}>{{ 'on-sale': 'Sale', 'new-release' : 'Just Released!'}[variant]}</Tag>}
+          {variant === 'on-sale' && <SalesFlag>Sale</SalesFlag>}
+          {variant === 'new-release' && <NewFlag>Just Released!</NewFlag>}
         </ImageWrapper>
         <Spacer size={12} />
         <Row>
@@ -55,7 +56,7 @@ const ShoeCard = ({
 const Link = styled.a`
   text-decoration: none;
   color: inherit;
-  flex: 1 1 340px;
+  flex: 1 1 275px;
 `;
 
 const Wrapper = styled.article`
@@ -90,6 +91,7 @@ const Name = styled.h3`
 `;
 
 const Price = styled.span`
+  color: ${props => (props.isSales ? `${COLORS.gray[700]}` : `${COLORS.gray[900]}`)};
   text-decoration: ${props => (props.isSales ? 'line-through' : 'none')};
 `;
 
@@ -102,16 +104,25 @@ const SalePrice = styled.span`
   color: ${COLORS.primary};
 `;
 
-const Tag = styled.div`
+const Flag = styled.div`
   position: absolute;
   top: 12px;
   right: -4px;
-  padding: 8px;
+  padding: 0 10px;
+  height: 32px;
+  line-height: 32px;
   color: ${COLORS.white};
   font-size: ${14 / 16}rem;
   font-weight: ${WEIGHTS.bold};
   border-radius: 2px;
-  background-color: ${props => ({'on-sale': `${COLORS.primary}`, 'new-release': `${COLORS.secondary}`}[props.variant])}
+`;
+
+const SalesFlag = styled(Flag)`
+  background-color: ${COLORS.primary};
+`;
+
+const NewFlag = styled(Flag)`
+  background-color: ${COLORS.secondary};
 `;
 
 export default ShoeCard;
